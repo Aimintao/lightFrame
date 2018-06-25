@@ -24,7 +24,8 @@ public class ClassHandle {
     static {
         CLASS_SET = ClassUtil.getAllClassByPackageName(ConfigEnum.APP_BASE_PACKAGE.getValue());
     }
-    public  static Set<Class<?>> getAllClassSetFromPackage(){
+
+    public static Set<Class<?>> getAllClassSetFromPackage() {
         /**
          * @Description: 获取应用包名下的所有类
          * @param []
@@ -32,9 +33,10 @@ public class ClassHandle {
          * @author Aimin
          * @date 2018/6/25 14:05
          */
-        return  CLASS_SET;
+        return CLASS_SET;
     }
-    public  static Set<Class<?>> getAllControllerClassSetFromPackage(){
+
+    public static Set<Class<?>> getAllControllerClassSetFromPackage() {
         /**
          * @Description: 获取应用包名下所有 Controller 类
          * @param []
@@ -43,15 +45,17 @@ public class ClassHandle {
          * @date 2018/6/25 14:05
          */
         HashSet<Class<?>> controllerSet = new HashSet<Class<?>>();
-        for (Class<?> cls :CLASS_SET
-             ) {
-           if (cls.isAnnotationPresent(Controller.class)){
-              controllerSet.add(cls);
-           }
+        for (Class<?> cls : CLASS_SET
+                ) {
+            if (cls.isAnnotationPresent(Controller.class)) {
+                controllerSet.add(cls);
+            }
         }
-        return  controllerSet;
+        log.info("getAllControllerClassSetFromPackage success！");
+        return controllerSet;
     }
-    public  static Set<Class<?>> getAllServiceClassSetFromPackage(){
+
+    public static Set<Class<?>> getAllServiceClassSetFromPackage() {
         /**
          * @Description: 获取应用包名下所有 Service 类
          * @param []
@@ -60,15 +64,17 @@ public class ClassHandle {
          * @date 2018/6/25 14:05
          */
         HashSet<Class<?>> serviceSet = new HashSet<Class<?>>();
-        for (Class<?> cls :CLASS_SET
-             ) {
-           if (cls.isAnnotationPresent(Service.class)){
-               serviceSet.add(cls);
-           }
+        for (Class<?> cls : CLASS_SET
+                ) {
+            if (cls.isAnnotationPresent(Service.class)) {
+                serviceSet.add(cls);
+            }
         }
-        return  serviceSet;
+        log.info("getAllServiceClassSetFromPackage success！");
+        return serviceSet;
     }
-    public  static Set<Class<?>> getAllBeanClassSetFromPackage(){
+
+    public static Set<Class<?>> getAllBeanClassSetFromPackage() {
         /**
          * @Description: 获取应用包名下所有 Bean 类（包括：Service、Controller 等）
          * @param []
@@ -79,7 +85,8 @@ public class ClassHandle {
         HashSet<Class<?>> beanSet = new HashSet<Class<?>>();
         beanSet.addAll(getAllControllerClassSetFromPackage());
         beanSet.addAll(getAllServiceClassSetFromPackage());
-        return  beanSet;
+        log.info("getAllBeanClassSetFromPackage success！");
+        return beanSet;
     }
 
     public static Set<Class<?>> getAllChildClassSetFromPackage(Class<?> superClass) {
@@ -91,32 +98,36 @@ public class ClassHandle {
          * @date 2018/6/25 15:38
          */
         HashSet<Class<?>> childSet = new HashSet<Class<?>>();
-        for (Class<?> cls:CLASS_SET
-             ) {
-            if (superClass.isAssignableFrom(cls) && !superClass.equals(cls)){
+        for (Class<?> cls : CLASS_SET
+                ) {
+            if (superClass.isAssignableFrom(cls) && !superClass.equals(cls)) {
                 childSet.add(cls);
             }
         }
+        log.info("getAllChildClassSetFromPackage success！");
+
         return childSet;
     }
- public static Set<Class<?>> getAllClassSetFromPackageSomeOneAnnotation(Class<? extends Annotation> annotation) {
-       /**
-        * @Description: 获取应用包名下带有某注解的所有类
-        * @param [annotation]
-        * @return java.util.Set<java.lang.Class<?>>
-        * @author Aimin
-        * @date 2018/6/25 15:45
-        */
+
+    public static Set<Class<?>> getAllClassSetFromPackageSomeOneAnnotation(Class<? extends Annotation> annotation) {
+        /**
+         * @Description: 获取应用包名下带有某注解的所有类
+         * @param [annotation]
+         * @return java.util.Set<java.lang.Class<?>>
+         * @author Aimin
+         * @date 2018/6/25 15:45
+         */
         HashSet<Class<?>> someOneAnnotationClassSet = new HashSet<Class<?>>();
-        for (Class<?> cls:CLASS_SET
-             ) {
-            if (cls.isAnnotationPresent(annotation)){
+        for (Class<?> cls : CLASS_SET
+                ) {
+            if (cls.isAnnotationPresent(annotation)) {
                 someOneAnnotationClassSet.add(cls);
             }
         }
+        log.info("getAllClassSetFromPackageSomeOneAnnotation success！");
+
         return someOneAnnotationClassSet;
     }
-
 
 
 }
