@@ -11,7 +11,15 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class StringUtil {
 
+
+    /**
+     * 字符串分隔符
+     */
+    public static final String SEPARATOR = String.valueOf((char) 29);
+
     public static boolean isEmpty(final CharSequence Istr) {
+
+
         /**
          * @Description: 判断字符串是否空
          * @param [Istr]
